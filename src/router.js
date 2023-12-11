@@ -1,15 +1,28 @@
 import { createRouter, createWebHistory } from 'vue-router'
+import { useAuth } from '@/composables/useAuth'
 
-import HomePage from '@/views/HomePage.vue'
+const { isAuthenticated } = useAuth()
+
+import MainPage from '@/components/MainPage.vue'
+import LoginPage from '@/components/LoginPage.vue'
+import SummaryPage from '@/components/SummaryPage.vue'
+import NotFound from '@/components/NotFound.vue'
 
 const routes = [
-  { path: '/', name: 'Home', component: HomePage },
-  { path: '/other', name: 'Other', component: () => import('@/views/OtherPage.vue') },
+    { path: '/', name: 'Home', component: MainPage },
+    { path: '/login', name: 'Login', component: LoginPage },
+    { path: '/summary', name: 'Summary', component: SummaryPage, meta: { requiresAuth: true } },
+    { path: '/:pathMatch(.*)*', name: 'NotFound', component: NotFound },
 ]
 
 const router = createRouter({
-  history: createWebHistory(),
-  routes,
+    history: createWebHistory(),
+    routes,
+})
+
+router.beforeEach((to, _, next) => {
+    if (to.meta.requiresAuth && !isAuthenticated.value) next({ name: 'Login', query: { redirect: to.fullPath } })
+    else next()
 })
 
 export default router
