@@ -1,12 +1,12 @@
 import { ref } from 'vue'
 import axios from 'axios'
 
-const songs = ref([])
+const islands = ref([])
 const pages = ref(1)
 const loading = ref(false)
 const activePage = ref(1)
-const pageSize = ref(12)
-const currentSongs = ref(null)
+const pageSize = ref(8)
+const currentislands = ref(null)
 
 const api = axios.create({
   baseURL: import.meta.env.VITE_API_URL,
@@ -16,27 +16,27 @@ const api = axios.create({
   },
 })
 
-const getSongs = async () => {
+const getIslands = async () => {
   loading.value = true
-  const { data, headers } = await api.get('/api/songs', {
+  const { data, headers } = await api.get('/api/islands', {
     params: {
       page: activePage.value,
       size: pageSize.value,
     },
   })
-  songs.value = data
+  islands.value = data
   pages.value = Number(headers['x-total-pages']) || 1
   loading.value = false
 }
 
-const fetchSongs = async (id) => {
-    const { data } = await api.get(`/api/songs/${id}`)
+const fetchislands  = async (id) => {
+    const { data } = await api.get(`/api/islands/${id}`)
     currentSongs.value = data
     console.log(data)
   }
 
 const useAPI = () => {
-  return { songs, pages, activePage, loading, pageSize, getSongs, fetchSongs, currentSongs}
+  return { islands, pages, activePage, loading, pageSize, getIslands, fetchislands, currentislands}
 }
 
 export default useAPI

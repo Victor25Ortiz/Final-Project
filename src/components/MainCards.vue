@@ -1,13 +1,13 @@
 <script setup>
   import useAPI from '@/composables/useAPI'
   import MainCardsSingle from '@/components/MainCardSingle.vue'
-  const { songs } = useAPI()
+  const { islands } = useAPI()
 </script>
 
 <template>
   <div class="sub-wrapper">
     <Suspense>
-      <MainCardsSingle v-for="song in songs" :key="song.songID" :song="song" />
+      <MainCardsSingle v-for="island in islands" :key="island.islandID" :island="island" />
       <template #fallback>
         <div>Loading...</div>
       </template>

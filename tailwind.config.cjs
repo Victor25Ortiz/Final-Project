@@ -2,7 +2,11 @@
 module.exports = {
   content: ['./index.html', './src/**/*.{vue,js,ts,jsx,tsx}'],
   theme: {
-    extend: {},
+    extend: {
+      ontFamily: {
+        'poppins': ['Astloch', 'sans-serif']
+      },
+    },
   },
   plugins: [
     require('@tailwindcss/typography'),

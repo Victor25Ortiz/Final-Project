@@ -16,7 +16,7 @@ const { isAuthenticated, logout, user } = useAuth()
       <div class="menu">
         <p v-show="isAuthenticated" class="px-2 py-4">Welcome back, <strong><i>{{ user?.email }}</i></strong></p>
         <div v-if="isAuthenticated">
-        <RouterLink :to="{ name: 'Settings' }" href="#" class="menu-item">Summary</RouterLink>
+        <RouterLink :to="{ name: 'Summary' }" href="#" class="menu-item">Summary</RouterLink>
         <button href="#" class="menu-logout" @click="logout">Logout</button>
         </div>
         <div v-else>
@@ -29,7 +29,7 @@ const { isAuthenticated, logout, user } = useAuth()
 
 <style scoped lang="postcss">
   nav {
-    @apply flex h-20 bg-slate-900 text-slate-200;
+    @apply flex h-20 bg-purple-600 text-slate-900;
     .wrapper {
       @apply container mx-auto flex w-full items-center justify-between;
       .brand {

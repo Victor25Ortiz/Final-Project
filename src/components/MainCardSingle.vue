@@ -4,23 +4,18 @@
     import useAPI from '@/composables/useAPI'
 
     const selectCard = () => {
-        console.log(`${props.song.name} selected`)
+        console.log(`${props.island.name} selected`)
     }
 
     const props = defineProps({
-        song: {
+        island: {
             type: Object,
             required: true,
             default: () => {
                 return {
-                    createdAt: '2022-01-01',
-                    songId: '123',
+                    islandID: '123',
                     name: 'john doe',
                     image: 'url',
-                    artist: 'name',
-                    title: 'title',
-                    album: 'album',
-                    genera: 'genera',
                 }
             },    
         },
@@ -28,14 +23,14 @@
 </script>
 
 <template>
-    <RouterLink v-if="props.song.songId" :to="`/api/songs/${props.song.songId}`">
+    <RouterLink v-if="props.island.islandID" :to="`/api/islands/${props.island.islandID}`">
   <div class="card" @click="selectCard">
     <div class="card-image">
-      <img :src="props.song.image" alt="" srcset="" />
+      <img :src="props.island.image" alt="" srcset="" />
     </div>
     <div class="card-details">
-      <p class="card-details-artist font-poppins">{{ props.song.artist }}</p>
-      <p class="card-details-title font-poppins">{{ props.song.title }}</p>  
+      <p class="card-details-artist font-poppins">{{ props.island.artist }}</p>
+      <p class="card-details-title font-poppins">{{ props.island.title }}</p>  
     </div>
   </div>
 </RouterLink>
