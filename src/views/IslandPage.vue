@@ -4,14 +4,14 @@ import { useRoute } from 'vue-router'
 
 import useAPI from '@/composables/useAPI';
 
-const { fetchisland, currentisland } = useAPI()
+const { fetchIsland, currentIsland } = useAPI()
 
 
 const route = useRoute()
 
-const island = ref('')
+const Island = ref('')
 onMounted(async () => {
-  await fetchisland(route.params.id)
+  await fetchIsland(route.params.id)
   console.log(route.params.id)
 })
 
@@ -23,7 +23,7 @@ onUnmounted(() => {
 
 <template>
   <main
-    class="min-h-screen bg-[conic-gradient(at_top,_var(--tw-gradient-stops))] from-gray-900 via-gray-100 to-gray-900 font-poppins"
+    class="min-h-screen bg-gradient-to-b from-amber-900 to-yellow-300 font-poppins"
   >
     <div
       v-if="currentIsland"

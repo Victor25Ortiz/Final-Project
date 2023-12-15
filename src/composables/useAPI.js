@@ -5,8 +5,8 @@ const islands = ref([])
 const pages = ref(1)
 const loading = ref(false)
 const activePage = ref(1)
-const pageSize = ref(8)
-const currentislands = ref(null)
+const pageSize = ref(12)
+const currentIsland = ref(null)
 
 const api = axios.create({
   baseURL: import.meta.env.VITE_API_URL,
@@ -18,7 +18,7 @@ const api = axios.create({
 
 const getIslands = async () => {
   loading.value = true
-  const { data, headers } = await api.get('/api/islands', {
+  const { data, headers } = await api.get('/api/island', {
     params: {
       page: activePage.value,
       size: pageSize.value,
@@ -29,14 +29,14 @@ const getIslands = async () => {
   loading.value = false
 }
 
-const fetchislands  = async (id) => {
+const fetchIslands = async (id) => {
     const { data } = await api.get(`/api/islands/${id}`)
-    currentSongs.value = data
+    currentIsland.value = data
     console.log(data)
   }
 
 const useAPI = () => {
-  return { islands, pages, activePage, loading, pageSize, getIslands, fetchislands, currentislands}
+  return { islands, pages, activePage, loading, pageSize, getIslands, fetchIslands, currentIsland}
 }
 
 export default useAPI

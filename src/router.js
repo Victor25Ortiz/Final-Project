@@ -7,10 +7,12 @@ import MainPage from '@/components/MainPage.vue'
 import LoginPage from '@/components/LoginPage.vue'
 import SummaryPage from '@/components/SummaryPage.vue'
 import NotFound from '@/components/NotFound.vue'
+import SettingsPage from '@/views/SettingsPage.vue'
 
 const routes = [
     { path: '/', name: 'Home', component: MainPage },
     { path: '/login', name: 'Login', component: LoginPage },
+    { path: '/settings', name: 'Settings', component: SettingsPage, meta: { requiresAuth: true } },
     { path: '/summary', name: 'Summary', component: SummaryPage, meta: { requiresAuth: true } },
     { path: '/:pathMatch(.*)*', name: 'NotFound', component: NotFound },
 ]

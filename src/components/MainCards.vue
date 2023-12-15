@@ -1,17 +1,24 @@
 <script setup>
+  import { ref, computed } from "vue";
   import useAPI from '@/composables/useAPI'
-  import MainCardsSingle from '@/components/MainCardSingle.vue'
+  import MainCardsSingle from '@/components/MainCardsSingle.vue'
+  import MainSearch from '@/components/MainSearch.vue'
+  
   const { islands } = useAPI()
+  const search = ref('');
+
+  const filteredList = computed(() => {
+  return islands.value.filter(island =>
+    island.name.toLowerCase().includes(search.value.toLowerCase())
+  );
+});
+
+
 </script>
 
 <template>
   <div class="sub-wrapper">
-    <Suspense>
-      <MainCardsSingle v-for="island in islands" :key="island.islandID" :island="island" />
-      <template #fallback>
-        <div>Loading...</div>
-      </template>
-    </Suspense>
+    <MainCardsSingle v-for="n in 20" />
   </div>
 </template>
 
